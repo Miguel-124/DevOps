@@ -1,14 +1,17 @@
-# Użyj obrazu bazowego Pythona (wersja 3.10 w tym przypadku)
-FROM python:3.13-slim
+# Pobierz obraz bazowy Pythona
+FROM python:3.12-slim
 
-# Ustaw katalog roboczy w kontenerze
+# Ustaw katalog roboczy
 WORKDIR /app
 
-# Skopiowanie jarki z hosta do kontenera
-COPY Welcome.py /app/Welcome.py
+# Skopiuj pliki aplikacji
+COPY app/ /app/
+
+# Instaluj zależności
+RUN pip install -r requirements.txt
 
 # Wystawienie portu 8080
 EXPOSE 8080
 
 # Uruchom aplikację
-CMD ["python", "Welcome.py"]
+CMD ["python", "app.py"]

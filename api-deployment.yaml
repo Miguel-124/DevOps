@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypto-api
+spec:
+  replicas: 2  # Skaluje aplikację do dwóch replik
+  selector:
+    matchLabels:
+      app: crypto-api
+  template:
+    metadata:
+      labels:
+        app: crypto-api
+    spec:
+      containers:
+      - name: crypto-api
+        image: crypto-api:latest
+        ports:
+        - containerPort: 5000
